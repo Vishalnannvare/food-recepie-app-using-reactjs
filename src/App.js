@@ -7,17 +7,14 @@ import Axios from "axios";
 function App() {
   const [search, setSerach] = useState("chiken");
   const [recipes, setRecipes] = useState([]);
-
-  const APP_ID = "33872a08";
-  const APP_KEY = "92a760011b69de9474909a393a845e39";
-
+  
   useEffect(() => {
     getRecipes();
   }, []);
 
   const getRecipes = async () => {
     const res = await Axios.get(
-      `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://api.edamam.com/search?q=${search}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}`
     );
     setRecipes(res.data.hits);
   };
